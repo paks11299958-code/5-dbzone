@@ -1,11 +1,10 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { SERVICES, TECH_STACK, CASE_STUDIES } from './constants';
 import * as Icons from './components/Icons';
 
 const App: React.FC = () => {
-  // 담당자 이메일 주소
   const adminEmail = "c2clo@naver.com";
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col relative w-full overflow-x-hidden break-keep-all">
@@ -17,24 +16,31 @@ const App: React.FC = () => {
             <span className="text-xl md:text-3xl font-black tracking-tighter text-slate-900">ZONE</span>
           </a>
           
-          {/* Desktop Menu with Red Bar Points */}
           <div className="hidden lg:flex items-center gap-10 xl:gap-14 text-lg font-bold text-slate-700">
-            {['주요 서비스', '기술 역량', '성공 사례', '문의하기'].map((item) => {
-              const href = item === '문의하기' ? `mailto:${adminEmail}` : `#${item === '주요 서비스' ? 'services' : item === '기술 역량' ? 'technology' : 'case-studies'}`;
+            {['주요 서비스', '기술 역량', '성공 사례', '스마트 문의하기'].map((item) => {
+              const href = item === '스마트 문의하기' ? '#' : `#${item === '주요 서비스' ? 'services' : item === '기술 역량' ? 'technology' : 'case-studies'}`;
+              const onClick = item === '스마트 문의하기' ? (e: React.MouseEvent) => { e.preventDefault(); setIsOpen(true); } : undefined;
               return (
-                <a key={item} href={href} className="relative group py-2 overflow-hidden whitespace-nowrap">
-                  <span className="group-hover:text-blue-600 transition-colors uppercase tracking-tight">{item}</span>
-                  <span className="absolute bottom-0 left-0 w-full h-[4px] bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </a>
+                <a key={item} href={href} onClick={onClick} className="relative group py-2 overflow-hidden whitespace-nowrap cursor-pointer">
+  <span className="group-hover:text-blue-600 transition-colors uppercase tracking-tight flex items-center gap-1">
+    {item === '스마트 문의하기' && (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 animate-bounce">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+    )}
+    {item}
+  </span>
+  <span className="absolute bottom-0 left-0 w-full h-[4px] bg-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+</a>
               );
             })}
           </div>
 
-          {/* Mobile simple contact link with Red Point */}
-          <a href={`mailto:${adminEmail}`} className="lg:hidden relative group px-2 py-1">
-            <span className="text-blue-600 font-bold text-base">문의하기</span>
+          <button onClick={() => setIsOpen(true)} className="lg:hidden relative group px-2 py-1">
+            <span className="text-blue-600 font-bold text-base">스마트 문의하기</span>
             <span className="absolute bottom-0 left-0 w-full h-[3px] bg-red-500"></span>
-          </a>
+          </button>
         </div>
       </nav>
 
@@ -54,7 +60,6 @@ const App: React.FC = () => {
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-[10px] md:text-xs font-bold mb-6 border border-blue-200 uppercase tracking-widest mx-auto md:mx-0">
               Data. Intelligence. Future.
             </div>
-            {/* Mobile-optimized font size and word break */}
             <h1 className="text-3xl sm:text-5xl md:text-8xl font-black text-slate-900 tracking-tight leading-[1.2] md:leading-[1.1] mb-8 break-words">
               DB <span className="text-blue-600">Innovation</span> <br className="hidden sm:block" />
               Beyond Managed <br className="hidden sm:block" />
@@ -65,7 +70,7 @@ const App: React.FC = () => {
               DBZone은 귀사의 비즈니스 핵심인 데이터를 가장 안전하고 지능적으로 관리합니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start px-4 md:px-0">
-              <a href={`mailto:${adminEmail}`} className="bg-slate-900 text-white px-8 md:px-10 py-4 rounded-xl font-bold hover:bg-slate-800 transition-all text-center shadow-xl hover:-translate-y-1 text-base md:text-lg">기술 상담 문의</a>
+              <button onClick={() => setIsOpen(true)} className="bg-slate-900 text-white px-8 md:px-10 py-4 rounded-xl font-bold hover:bg-slate-800 transition-all text-center shadow-xl hover:-translate-y-1 text-base md:text-lg">기술 상담 문의</button>
               <a href="#services" className="bg-white/80 backdrop-blur-sm text-slate-900 border border-slate-200 px-8 md:px-10 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all text-center text-base md:text-lg">서비스 보기</a>
             </div>
           </div>
@@ -103,7 +108,7 @@ const App: React.FC = () => {
                     {service.description}
                   </p>
                   
-                  <div className="space-y-3 md:space-y-5 mb-8 md:mb-10 flex-1">
+                  <div className="space-y-3 md:space-y-5 flex-1">
                     {service.features.map((f, i) => (
                       <div key={i} className="flex items-start gap-3 md:gap-4 text-left">
                         <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mt-0.5 shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all">
@@ -113,14 +118,6 @@ const App: React.FC = () => {
                       </div>
                     ))}
                   </div>
-
-                  <a 
-                    href={`mailto:${adminEmail}`} 
-                    className="inline-flex items-center justify-between px-6 md:px-10 py-4 md:py-6 bg-white border border-slate-200 text-slate-900 rounded-xl md:rounded-2xl font-black hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 group/btn"
-                  >
-                    <span className="text-xs md:text-base">서비스 상세 문의하기</span>
-                    <svg className="transform group-hover/btn:translate-x-2 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                  </a>
                 </div>
               );
             })}
@@ -149,7 +146,6 @@ const App: React.FC = () => {
               </div>
             </div>
             
-            {/* Terminal Interface - Hidden on small mobile */}
             <div className="bg-[#0f172a] border border-slate-700 rounded-3xl md:rounded-[2.5rem] p-8 md:p-12 shadow-2xl font-mono text-xs md:text-sm relative overflow-hidden hidden md:block">
               <div className="flex gap-2 mb-8">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
@@ -177,9 +173,9 @@ const App: React.FC = () => {
               <h2 className="text-[10px] md:text-sm font-bold text-blue-600 uppercase tracking-widest mb-4">Proven Results</h2>
               <h3 className="text-2xl md:text-5xl font-black text-slate-900 tracking-tight break-keep-all">숫자와 결과로 증명합니다</h3>
             </div>
-            <a href={`mailto:${adminEmail}`} className="text-blue-600 font-black flex items-center gap-2 group text-sm md:text-lg">
-              상담 문의하기 <Icons.Check />
-            </a>
+            <button onClick={() => setIsOpen(true)} className="text-blue-600 font-black flex items-center gap-2 group text-sm md:text-lg">
+              스마트 문의하기 <Icons.Check />
+            </button>
           </div>
           <div className="grid md:grid-cols-2 gap-6 md:gap-10">
             {CASE_STUDIES.map((study, idx) => (
@@ -213,19 +209,16 @@ const App: React.FC = () => {
             <p className="text-slate-400 mb-8 md:mb-14 max-w-2xl mx-auto text-sm md:text-xl font-medium leading-relaxed px-2 break-keep-all">
               귀사의 데이터베이스 환경을 정밀하게 분석하여 성능 향상 전략을 제안해 드립니다.
             </p>
-            
-            <div className="bg-slate-800/50 backdrop-blur-md rounded-xl md:rounded-3xl p-6 md:p-12 border border-slate-700/50 inline-block w-full max-w-full overflow-hidden">
-              <div className="flex flex-col items-center gap-3 md:gap-4">
-                <span className="text-blue-400 font-bold uppercase tracking-[0.2em] text-[9px] md:text-sm">Contact Person Email</span>
-                <a 
-                  href={`mailto:${adminEmail}`} 
-                  className="text-sm sm:text-lg md:text-2xl font-bold text-white hover:text-blue-400 transition-colors tracking-tight break-all underline decoration-blue-500/30"
-                >
-                  {adminEmail}
-                </a>
-                <p className="text-slate-500 text-[10px] md:text-sm mt-2 md:mt-4 break-keep-all">메일을 보내주시면 2시간 이내에 전문 엔지니어가 회신 드립니다.</p>
-              </div>
-            </div>
+            <button
+              onClick={() => setIsOpen(true)}
+              className="bg-blue-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-blue-700 transition-all hover:-translate-y-1 shadow-xl flex items-center gap-3 mx-auto"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              스마트 문의하기
+            </button>
           </div>
         </div>
       </section>
@@ -248,6 +241,24 @@ const App: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* Typebot 스마트 알리미 팝업 */}
+    {isOpen && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setIsOpen(false)}>
+    <div className="relative w-full max-w-lg h-[600px] bg-white rounded-2xl overflow-hidden shadow-2xl" onClick={e => e.stopPropagation()}>
+      <button 
+        onClick={() => setIsOpen(false)}
+        className="absolute top-3 right-3 z-10 bg-white rounded-full p-1 shadow-md hover:bg-slate-100"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <iframe
+        src="https://bot.dbzone.kr/lead-generation-7o4fpsk"
+        className="w-full h-full border-0"
+      />
+    </div>
+  </div>
+)}
     </div>
   );
 };
