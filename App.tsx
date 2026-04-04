@@ -17,14 +17,14 @@ const App: React.FC = () => {
           </a>
           
           <div className="hidden lg:flex items-center gap-10 xl:gap-14 text-lg font-bold text-slate-700">
-            {['주요 서비스', '기술 역량', '성공 사례', '스마트 문의하기'].map((item) => {
-              const href = item === '스마트 문의하기' ? '#' : `#${item === '주요 서비스' ? 'services' : item === '기술 역량' ? 'technology' : 'case-studies'}`;
-              const onClick = item === '스마트 문의하기' ? (e: React.MouseEvent) => { e.preventDefault(); setIsOpen(true); } : undefined;
+            {['주요 서비스', '기술 역량', '성공 사례', 'AI Genie와 상담하기'].map((item) => {
+              const href = item === 'AI Genie와 상담하기' ? '#' : `#${item === '주요 서비스' ? 'services' : item === '기술 역량' ? 'technology' : 'case-studies'}`;
+              const onClick = item === 'AI Genie와 상담하기' ? (e: React.MouseEvent) => { e.preventDefault(); setIsOpen(true); } : undefined;
               return (
                 <a key={item} href={href} onClick={onClick} className="relative group py-2 overflow-hidden whitespace-nowrap cursor-pointer">
   <span className="group-hover:text-blue-600 transition-colors uppercase tracking-tight flex items-center gap-1">
-    {item === '스마트 문의하기' && (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 animate-bounce">
+    {item === 'AI Genie와 상담하기' && (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
         <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
       </svg>
@@ -38,7 +38,13 @@ const App: React.FC = () => {
           </div>
 
           <button onClick={() => setIsOpen(true)} className="lg:hidden relative group px-2 py-1">
-            <span className="text-blue-600 font-bold text-base">스마트 문의하기</span>
+            <span className="text-blue-600 font-bold text-base flex items-center gap-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              AI Genie와 상담하기
+            </span>
             <span className="absolute bottom-0 left-0 w-full h-[3px] bg-red-500"></span>
           </button>
         </div>
@@ -46,21 +52,21 @@ const App: React.FC = () => {
 
       {/* Hero Section */}
       <header className="relative overflow-hidden pt-12 md:pt-24 pb-20 md:pb-40 hero-gradient px-4 md:px-6">
-        <div className="absolute inset-0 z-0 opacity-[0.12] pointer-events-none">
+        <div className="absolute inset-0 z-0 opacity-[0.9] pointer-events-none">
             <img 
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop" 
+                src="/homebg.png" 
                 className="w-full h-full object-cover" 
                 alt="modern-office-building-bg"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-50 to-slate-50"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-50/60 to-slate-50"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto relative z-10 text-center md:text-left">
+        <div className="max-w-7xl mx-auto relative z-10 text-center md:text-left pt-[65vw] md:pt-[45vw] lg:pt-[35vw]">
           <div className="max-w-4xl mx-auto md:mx-0">
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-[10px] md:text-xs font-bold mb-6 border border-blue-200 uppercase tracking-widest mx-auto md:mx-0">
               Data. Intelligence. Future.
             </div>
-            <h1 className="text-3xl sm:text-5xl md:text-8xl font-black text-slate-900 tracking-tight leading-[1.2] md:leading-[1.1] mb-8 break-words">
+            <h1 className="text-xl sm:text-2xl md:text-4xl font-black text-slate-900 tracking-tight leading-[1.2] md:leading-[1.1] mb-8 break-words">
               DB <span className="text-blue-600">Innovation</span> <br className="hidden sm:block" />
               Beyond Managed <br className="hidden sm:block" />
               Services.
@@ -70,7 +76,13 @@ const App: React.FC = () => {
               DBZone은 귀사의 비즈니스 핵심인 데이터를 가장 안전하고 지능적으로 관리합니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start px-4 md:px-0">
-              <button onClick={() => setIsOpen(true)} className="bg-slate-900 text-white px-8 md:px-10 py-4 rounded-xl font-bold hover:bg-slate-800 transition-all text-center shadow-xl hover:-translate-y-1 text-base md:text-lg">기술 상담 문의</button>
+              <button onClick={() => setIsOpen(true)} className="bg-slate-900 text-white px-8 md:px-10 py-4 rounded-xl font-bold hover:bg-slate-800 transition-all text-center shadow-xl hover:-translate-y-1 text-base md:text-lg flex items-center gap-2 justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+                AI Genie와 상담하기
+              </button>
               <a href="#services" className="bg-white/80 backdrop-blur-sm text-slate-900 border border-slate-200 px-8 md:px-10 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all text-center text-base md:text-lg">서비스 보기</a>
             </div>
           </div>
@@ -174,7 +186,11 @@ const App: React.FC = () => {
               <h3 className="text-2xl md:text-5xl font-black text-slate-900 tracking-tight break-keep-all">숫자와 결과로 증명합니다</h3>
             </div>
             <button onClick={() => setIsOpen(true)} className="text-blue-600 font-black flex items-center gap-2 group text-sm md:text-lg">
-              스마트 문의하기 <Icons.Check />
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              AI Genie와 상담하기
             </button>
           </div>
           <div className="grid md:grid-cols-2 gap-6 md:gap-10">
@@ -213,11 +229,11 @@ const App: React.FC = () => {
               onClick={() => setIsOpen(true)}
               className="bg-blue-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-blue-700 transition-all hover:-translate-y-1 shadow-xl flex items-center gap-3 mx-auto"
             >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
                 <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
               </svg>
-              스마트 문의하기
+              AI Genie와 상담하기
             </button>
           </div>
         </div>
