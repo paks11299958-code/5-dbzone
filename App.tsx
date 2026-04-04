@@ -17,13 +17,13 @@ const App: React.FC = () => {
           </a>
           
           <div className="hidden lg:flex items-center gap-10 xl:gap-14 text-lg font-bold text-slate-700">
-            {['주요 서비스', '기술 역량', '성공 사례', 'AI Genie와 상담하기'].map((item) => {
-              const href = item === 'AI Genie와 상담하기' ? '#' : `#${item === '주요 서비스' ? 'services' : item === '기술 역량' ? 'technology' : 'case-studies'}`;
-              const onClick = item === 'AI Genie와 상담하기' ? (e: React.MouseEvent) => { e.preventDefault(); setIsOpen(true); } : undefined;
+            {['주요 서비스', '기술 역량', '성공 사례', 'AI 상담'].map((item) => {
+              const href = item === 'AI 상담' ? '#' : `#${item === '주요 서비스' ? 'services' : item === '기술 역량' ? 'technology' : 'case-studies'}`;
+              const onClick = item === 'AI 상담' ? (e: React.MouseEvent) => { e.preventDefault(); setIsOpen(true); } : undefined;
               return (
                 <a key={item} href={href} onClick={onClick} className="relative group py-2 overflow-hidden whitespace-nowrap cursor-pointer">
   <span className="group-hover:text-blue-600 transition-colors uppercase tracking-tight flex items-center gap-1">
-    {item === 'AI Genie와 상담하기' && (
+    {item === 'AI 상담' && (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce">
         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
         <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
@@ -43,7 +43,7 @@ const App: React.FC = () => {
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
                 <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
               </svg>
-              AI Genie와 상담하기
+              AI 상담
             </span>
             <span className="absolute bottom-0 left-0 w-full h-[3px] bg-red-500"></span>
           </button>
@@ -81,7 +81,7 @@ const App: React.FC = () => {
                   <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
                   <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
                 </svg>
-                AI Genie와 상담하기
+                AI 상담
               </button>
               <a href="#services" className="bg-white/80 backdrop-blur-sm text-slate-900 border border-slate-200 px-8 md:px-10 py-4 rounded-xl font-bold hover:bg-slate-50 transition-all text-center text-base md:text-lg">서비스 보기</a>
             </div>
@@ -190,7 +190,7 @@ const App: React.FC = () => {
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
                 <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
               </svg>
-              AI Genie와 상담하기
+              AI 상담
             </button>
           </div>
           <div className="grid md:grid-cols-2 gap-6 md:gap-10">
@@ -233,7 +233,7 @@ const App: React.FC = () => {
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
                 <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
               </svg>
-              AI Genie와 상담하기
+              AI 상담
             </button>
           </div>
         </div>
