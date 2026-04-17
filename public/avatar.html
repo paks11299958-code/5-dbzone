@@ -3,44 +3,56 @@
 <head>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
   <style>
-    body {
+    html, body {
       margin: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(135deg, #020617 0%, #1e3a8a 100%);
+      padding: 0;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
+      background: transparent; /* 🔴 부모 배경 따라가게 */
+    }
+
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
-      /* 핵심: 배경 부분은 클릭이 통과되도록 설정 */
-      pointer-events: none; 
     }
+
     model-viewer {
-      width: 90%; 
-      height: 90%;
-      /* 핵심: 로봇 몸체만 클릭(회전 등)이 작동하도록 설정 */
-      pointer-events: auto;
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
+
 <body>
   <model-viewer 
     id="robot"
-    src="./RobotExpressive.glb" 
-    autoplay 
-    camera-controls 
+    src="./RobotExpressive.glb"
+
+    autoplay
+    camera-controls
     interaction-prompt="none"
+
+    /* 🔥 핵심 설정 */
+    camera-orbit="0deg 75deg 2.2m"
+    min-camera-orbit="auto auto 1.5m"
+    max-camera-orbit="auto auto 3m"
+    field-of-view="30deg"
+
     shadow-intensity="1"
-    camera-orbit="0deg 75deg 250%" 
-    min-camera-orbit="auto auto 100%"
-    style="--poster-color: transparent;">
+    exposure="1.2"
+  >
   </model-viewer>
 
   <script>
     const modelViewer = document.querySelector('#robot');
+
     modelViewer.addEventListener('load', () => {
       modelViewer.animationName = "Wave";
-      setTimeout(() => { modelViewer.animationName = "Idle"; }, 3000);
+      setTimeout(() => {
+        modelViewer.animationName = "Idle";
+      }, 3000);
     });
   </script>
 </body>
