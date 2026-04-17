@@ -12,11 +12,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      /* 핵심: 배경 부분은 클릭이 통과되도록 설정 */
+      pointer-events: none; 
     }
     model-viewer {
-      /* 여기서 로봇이 노출되는 영역 전체 크기를 조절합니다 */
       width: 90%; 
       height: 90%;
+      /* 핵심: 로봇 몸체만 클릭(회전 등)이 작동하도록 설정 */
+      pointer-events: auto;
     }
   </style>
 </head>
