@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      /* 배경을 투명하게 하거나, 타입봇 배경과 맞춤 */
+      background: linear-gradient(135deg, #020617 0%, #1e3a8a 100%);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    model-viewer {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <model-viewer 
+    id="robot"
+    src="./RobotExpressive.glb" 
+    autoplay 
+    camera-controls 
+    interaction-prompt="none"
+    shadow-intensity="1">
+  </model-viewer>
+
+  <script>
+    const modelViewer = document.querySelector('#robot');
+    modelViewer.addEventListener('load', () => {
+      modelViewer.animationName = "Wave";
+      setTimeout(() => { modelViewer.animationName = "Idle"; }, 3000);
+    });
+  </script>
+</body>
+</html>
