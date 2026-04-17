@@ -260,18 +260,37 @@ const App: React.FC = () => {
 
       {/* Typebot 스마트 알리미 팝업 */}
     {isOpen && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setIsOpen(false)}>
-    <div className="relative w-full max-w-lg h-[600px] bg-white rounded-2xl overflow-hidden shadow-2xl" onClick={e => e.stopPropagation()}>
-      <button 
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setIsOpen(false)}>
+    <div
+      className="relative flex w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-2xl"
+      style={{ height: 'min(620px, 90vh)' }}
+      onClick={e => e.stopPropagation()}
+    >
+      {/* 닫기 버튼 */}
+      <button
         onClick={() => setIsOpen(false)}
-        className="absolute top-3 right-3 z-10 bg-white rounded-full p-1 shadow-md hover:bg-slate-100"
+        className="absolute top-3 right-3 z-20 bg-white/90 backdrop-blur-sm rounded-full p-1.5 shadow-md hover:bg-slate-100 transition-colors"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
-      <iframe
-        src="https://bot.dbzone.kr/lead-generation-7o4fpsk"
-        className="w-full h-full border-0"
-      />
+
+      {/* 왼쪽: 3D 캐릭터 */}
+      <div className="hidden sm:block w-2/5 shrink-0 h-full">
+        <iframe
+          src="/avatar.html"
+          className="w-full h-full border-0"
+          title="AI 상담 캐릭터"
+        />
+      </div>
+
+      {/* 오른쪽: Typebot 채팅 */}
+      <div className="flex-1 h-full">
+        <iframe
+          src="https://bot.dbzone.kr/lead-generation-7o4fpsk"
+          className="w-full h-full border-0"
+          title="AI 상담 채팅"
+        />
+      </div>
     </div>
   </div>
 )}
