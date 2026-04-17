@@ -260,10 +260,10 @@ const App: React.FC = () => {
 
       {/* Typebot 스마트 알리미 팝업 */}
     {isOpen && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setIsOpen(false)}>
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3 sm:p-4" onClick={() => setIsOpen(false)}>
     <div
-      className="relative flex w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-2xl"
-      style={{ height: 'min(620px, 90vh)' }}
+      className="relative flex flex-col sm:flex-row w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-2xl"
+      style={{ height: 'min(700px, 92vh)' }}
       onClick={e => e.stopPropagation()}
     >
       {/* 닫기 버튼 */}
@@ -274,8 +274,8 @@ const App: React.FC = () => {
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
 
-      {/* 왼쪽: 3D 캐릭터 */}
-      <div className="hidden sm:block w-2/5 shrink-0 h-full">
+      {/* 3D 캐릭터: 모바일=상단 30%, 데스크톱=왼쪽 40% */}
+      <div className="w-full h-[30%] sm:w-2/5 sm:h-full shrink-0">
         <iframe
           src="/avatar.html"
           className="w-full h-full border-0"
@@ -283,8 +283,8 @@ const App: React.FC = () => {
         />
       </div>
 
-      {/* 오른쪽: Typebot 채팅 */}
-      <div className="flex-1 h-full">
+      {/* Typebot 채팅: 모바일=하단 70%, 데스크톱=오른쪽 60% */}
+      <div className="flex-1 min-h-0">
         <iframe
           src="https://bot.dbzone.kr/lead-generation-7o4fpsk"
           className="w-full h-full border-0"
