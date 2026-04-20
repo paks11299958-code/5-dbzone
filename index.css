@@ -468,7 +468,12 @@ body::before {
   width: 40%; background: linear-gradient(135deg, #020617 0%, #1e3a8a 100%);
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
-@media (max-width: 700px) { .dbz-modal-avatar { width: 100%; height: 30%; } }
+@media (max-width: 700px) { .dbz-modal-avatar { width: 100%; height: 200px; flex-shrink: 0; } }
+
+.dbz-modal-chat {
+  flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden;
+}
+.dbz-modal-chat iframe { flex: 1; width: 100%; height: 100%; border: 0; display: block; }
 .dbz-avatar-inner { text-align: center; color: #fff; }
 .dbz-avatar-circle {
   width: 180px; height: 180px; border-radius: 50%;
